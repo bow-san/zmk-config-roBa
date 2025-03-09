@@ -87,10 +87,10 @@
 
         NUM {
             bindings = <
-&kt EXCLAMATION  &kt DOUBLE_QUOTES  &kt HASH  &kt DOLLAR  &kt PERCENT                      &kt AMPERSAND  &kt SQT  &kt LEFT_PARENTHESIS  &kt RIGHT_PARENTHESIS  &trans
-&trans           &trans             &trans    &trans      &trans       &trans      &trans  &trans         &trans   &trans                &trans                 &trans
-&trans           &trans             &trans    &trans      &trans       &trans      &trans  &trans         &trans   &trans                &trans                 &trans
-&trans           &trans             &trans    &trans      &trans       &trans      &trans  &trans                                                               &trans
+&kt EXCLAMATION  &kt DOUBLE_QUOTES  &kt HASH  &kt DOLLAR      &kt PERCENT                        &kt AMPERSAND  &kt SQT           &kt LEFT_PARENTHESIS  &kt RIGHT_PARENTHESIS  &kt PIPE
+&trans           &trans             &trans    &kt UNDERSCORE  &kt BACKSLASH  &trans      &trans  &kt LESS_THAN  &kt GREATER_THAN  &kt LEFT_BRACKET      &kt RIGHT_BRACKET      &kt COLON
+&trans           &trans             &trans    &trans          &trans         &trans      &trans  &kt QUESTION   &kt SLASH         &kt LEFT_BRACE        &kt RIGHT_BRACE        &kt SEMICOLON
+&trans           &trans             &trans    &trans          &trans         &trans      &trans  &trans                                                                        &kt GRAVE
             >;
         };
 

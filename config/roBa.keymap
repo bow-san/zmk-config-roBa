@@ -42,7 +42,7 @@
         };
 
         nihongo {
-            bindings = <&kp LANG_ZENKAKUHANKAKU>;
+            bindings = <&kp LA(SQT)>;
             key-positions = <39 37>;
         };
     };

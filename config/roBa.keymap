@@ -121,10 +121,10 @@
 
         SCROLL {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &trans  &trans                                       &trans          &trans          &trans          &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &kt LANG_ZENKAKUHANKAKU  &kt LANGUAGE_3  &kt LANGUAGE_4  &kt LANGUAGE_5  &kt LANGUAGE_6  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans                   &trans          &trans          &trans          &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans                   &trans                                                          &trans
             >;
         };
 

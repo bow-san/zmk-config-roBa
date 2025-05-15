@@ -8,6 +8,7 @@
 #define NUM 6
 
 // OS設定を日本語キーボードのまま使用するための変換定義
+
 #define JP_HANZEN       GRAVE             // 半角/全角
 
 &mt {
@@ -86,10 +87,10 @@
 
         FUNC_NUM {
             bindings = <
-&kp F1          &kp F2        &kp F3        &kp F4        &kp F5                                    &kp F6        &kp F7     &kp F8     &kp F9   &kp F10
-&kt NUMBER_1    &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5     &trans         &trans          &kp NUMBER_6  &kp N7     &kp N8     &kp N9   &kp N0
-&kp LEFT_SHIFT  &kt PLUS      &kt MINUS     &kt ASTERISK  &kt SLASH  &trans         &trans          &kt EQUAL     &kt TILDE  &kt CARET  &kp F11  &kp F12
-&trans          &trans        &trans        &trans        &trans     &kp GRAVE      &kp LEFT_SHIFT  &trans                                       &kp RIGHT_SHIFT
+&kp F1          &kp F2        &kp F3        &kp F4        &kp F5                                 &kp F6        &kp F7     &kp F8     &kp F9   &kp F10
+&kt NUMBER_1    &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5     &trans      &trans          &kp NUMBER_6  &kp N7     &kp N8     &kp N9   &kp N0
+&kp LEFT_SHIFT  &kt PLUS      &kt MINUS     &kt ASTERISK  &kt SLASH  &trans      &trans          &kt EQUAL     &kt TILDE  &kt CARET  &kp F11  &kp F12
+&trans          &trans        &trans        &trans        &trans     &trans      &kp LEFT_SHIFT  &trans                                       &kp RIGHT_SHIFT
             >;
         };
 

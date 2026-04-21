@@ -165,10 +165,10 @@
 
         Func {
             bindings = <
-&kp HOME  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&kp END   &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp HOME        &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&kp LEFT_SHIFT  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans          &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&kp END         &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 

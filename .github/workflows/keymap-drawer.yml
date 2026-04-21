@@ -1,0 +1,35 @@
+name: Generate Keymap SVG
+
+on:
+  push:
+    paths:
+      - 'roBa.keymap'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install keymap-drawer
+        run: |
+          pip install keymap-drawer
+
+      - name: Generate SVG
+        run: |
+          keymap parse -z config/roBa.keymap > keymap.yaml
+          keymap draw keymap.yaml > keymap.svg
+
+      - name: Commit SVG
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add keymap.svg
+          git commit -m "Auto-generate keymap SVG" || echo "No changes"
+          git push

@@ -3,7 +3,7 @@ name: Generate Keymap SVG
 on:
   push:
     paths:
-      - 'roBa.keymap'
+      - '**.keymap'
   workflow_dispatch:
 
 permissions:

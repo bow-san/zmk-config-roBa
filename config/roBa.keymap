@@ -168,7 +168,7 @@
 &kp HOME  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
 &trans    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans    &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans    &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp END   &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 

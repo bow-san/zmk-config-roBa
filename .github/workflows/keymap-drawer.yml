@@ -24,7 +24,7 @@ jobs:
       - name: Generate SVG
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml
-          keymap draw keymap.yaml --config keymap-drawer.yaml > keymap.svg
+          keymap --config keymap-drawer.yaml draw keymap.yaml > keymap.svg
           
       - name: Commit SVG
         run: |

@@ -37,7 +37,7 @@ jobs:
 
       - name: Inject layout
         run: |
-          yq '.layout = load("layout.yaml").layout' keymap_clean.yaml > combined.yaml
+          yq -s '.[0] * {"layout": .[1].layout}' keymap_clean.yaml layout.yaml > combined.yaml
 
       - name: Draw
         run: |

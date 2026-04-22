@@ -16,11 +16,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Debug file tree
-        run: |
-          echo "=== ROOT ==="
-          ls -R
+
       - name: Install tools
         run: |
           pip install keymap-drawer
@@ -31,13 +27,17 @@ jobs:
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml
 
+      - name: Remove zmk_keyboard
+        run: |
+          yq 'del(.zmk_keyboard)' keymap.yaml > keymap_fixed.yaml
+
       - name: Convert layout
         run: |
           jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.yaml
 
       - name: Merge
         run: |
-          yq -s '.[0] * .[1]' keymap.yaml layout.yaml > combined.yaml
+          yq -s '.[0] * .[1]' keymap_fixed.yaml layout.yaml > combined.yaml
 
       - name: Draw
         run: |

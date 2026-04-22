@@ -41,7 +41,7 @@ jobs:
 
       - name: Convert back to YAML
         run: |
-          yq -y combined.json > combined.yaml
+          yq -y . combined.json > combined.yaml
 
       - name: Debug combined.yaml
         run: cat combined.yaml

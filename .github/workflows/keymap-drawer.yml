@@ -37,7 +37,7 @@ jobs:
 
       - name: Merge
         run: |
-          yq eval-all 'select(fileIndex==0) * select(fileIndex==1)' keymap.yaml layout.yaml > combined.yaml
+          yq -s '.[0] * .[1]' keymap.yaml layout.yaml > combined.yaml
 
       - name: Draw
         run: |

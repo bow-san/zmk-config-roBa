@@ -14,21 +14,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install keymap-drawer
+      - name: Install tools
         run: |
           pip install keymap-drawer
+          sudo apt-get update
+          sudo apt-get install -y jq yq
 
-      - name: Generate SVG
+      - name: Convert keymap
         run: |
-          keymap draw config/roBa.json > keymap.svg
-          
-      - name: Commit SVG
+          keymap parse -z config/roBa.keymap > keymap.yaml
+
+      - name: Convert layout
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add keymap.svg
-          git commit -m "Auto-generate keymap SVG" || echo "No changes"
-          git push
+          jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.yaml
+
+      - name: Merge
+        run: |
+          yq eval-all 'select(fileIndex==0) * select(fileIndex==1)' keymap.yaml layout.yaml > combined.yaml
+
+      - name: Draw
+        run: |
+          keymap draw combined.yaml > keymap.svg

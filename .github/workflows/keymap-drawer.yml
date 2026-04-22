@@ -27,17 +27,17 @@ jobs:
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml
 
-      - name: Remove zmk_keyboard
+      - name: Clean keymap
         run: |
-          yq 'del(.zmk_keyboard)' keymap.yaml > keymap_fixed.yaml
+          yq 'del(.zmk_keyboard) | del(.keyboard)' keymap.yaml > keymap_clean.yaml
 
       - name: Convert layout
         run: |
           jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.yaml
 
-      - name: Merge
+      - name: Inject layout
         run: |
-          yq -s '.[0] * .[1]' keymap_fixed.yaml layout.yaml > combined.yaml
+          yq '.layout = load("layout.yaml").layout' keymap_clean.yaml > combined.yaml
 
       - name: Draw
         run: |

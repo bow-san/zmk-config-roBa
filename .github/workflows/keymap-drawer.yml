@@ -27,17 +27,24 @@ jobs:
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml
 
-      - name: Clean keymap
+      - name: Convert keymap to JSON & remove zmk_keyboard
         run: |
-          yq 'del(.zmk_keyboard) | del(.keyboard)' keymap.yaml > keymap_clean.yaml
+          yq -o=json keymap.yaml | jq 'del(.. | .zmk_keyboard?) | del(.. | .keyboard?)' > keymap_clean.json
 
       - name: Convert layout
         run: |
-          jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.yaml
+          jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.json
 
-      - name: Inject layout
+      - name: Merge (Python yq方式)
         run: |
-          yq -s '.[0] * {"layout": .[1].layout}' keymap_clean.yaml layout.yaml > combined.yaml
+          jq -s '.[0] * {layout: .[1].layout}' keymap_clean.json layout.json > combined.json
+
+      - name: Convert back to YAML
+        run: |
+          yq -y combined.json > combined.yaml
+
+      - name: Debug combined.yaml
+        run: cat combined.yaml
 
       - name: Draw
         run: |

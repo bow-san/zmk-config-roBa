@@ -47,9 +47,9 @@ jobs:
             json.dump(data, f)
           EOF
 
-      - name: Convert layout（修正版）
+      - name: Convert layout（最終正解）
         run: |
-          jq '{layout: .layouts.default_layout.layout}' config/roBa.json > layout.json
+          jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.json
 
       - name: Debug files
         run: |
@@ -75,7 +75,7 @@ jobs:
             json.dump(keymap, f, indent=2)
           EOF
 
-      - name: Debug layout.json
+      - name: Debug combined.json
         run: cat combined.json
 
       - name: Convert back to YAML

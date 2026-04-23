@@ -57,6 +57,13 @@ jobs:
       - name: Debug layout.json
         run: cat layout.json
 
+      - name: Debug files
+        run: |
+          echo "=== keymap_clean.json ==="
+          cat keymap_clean.json || true
+          echo "=== layout.json ==="
+          cat layout.json || true
+
       - name: Merge (Python yq方式)
         run: |
           jq -s '.[0] | .layout = .[1].layout' keymap_clean.json layout.json > combined.json

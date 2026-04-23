@@ -29,11 +29,15 @@ jobs:
 
       - name: Convert keymap
         run: |
-          keymap parse -z config/roBa.keymap
+          keymap parse -z config/roBa.keymap > keymap.yaml
           
       - name: Convert keymap to JSON & remove zmk_keyboard
         run: |
           yq -o=json keymap.yaml | jq 'del(.. | .zmk_keyboard?) | del(.. | .keyboard?)' > keymap_clean.json
+
+      - name: Clean keymap
+        run: |
+          yq keymap.yaml | jq 'del(.layout)' > keymap_clean.json
 
       - name: Convert layout (robust)
         run: |

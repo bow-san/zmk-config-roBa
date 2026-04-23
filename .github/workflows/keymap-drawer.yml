@@ -61,6 +61,9 @@ jobs:
         run: |
           jq -s '.[0] * {layout: .[1].layout}' keymap_clean.json layout.json > combined.json
 
+      - name: Debug layout.json
+        run: cat combined.json
+
       - name: Convert back to YAML
         run: |
           yq -y . combined.json > combined.yaml

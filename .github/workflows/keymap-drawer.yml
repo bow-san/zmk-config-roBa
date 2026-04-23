@@ -35,9 +35,24 @@ jobs:
         run: |
           yq -o=json keymap.yaml | jq 'del(.. | .zmk_keyboard?) | del(.. | .keyboard?)' > keymap_clean.json
 
-      - name: Convert layout
+      - name: Convert layout (robust)
         run: |
-          jq '{layout: {keys: .layouts.default_layout.layout}}' config/roBa.json > layout.json
+          jq '{
+            layout: {
+              keys: (
+                .layouts.default_layout.layout
+                | map({
+                    x: .x,
+                    y: .y,
+                    w: (.w // 1),
+                    h: (.h // 1),
+                    r: .r,
+                    rx: .rx,
+                    ry: .ry
+                  })
+              )
+            }
+          }' config/roBa.json > layout.json
 
       - name: Merge (Python yq方式)
         run: |

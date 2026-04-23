@@ -54,6 +54,9 @@ jobs:
             }
           }' config/roBa.json > layout.json
 
+      - name: Debug layout.yaml
+        run: cat layout.yaml
+
       - name: Merge (Python yq方式)
         run: |
           jq -s '.[0] * {layout: .[1].layout}' keymap_clean.json layout.json > combined.json

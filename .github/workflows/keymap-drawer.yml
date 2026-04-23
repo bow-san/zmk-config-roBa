@@ -69,9 +69,10 @@ jobs:
           with open("layout.json") as f:
             layout = json.load(f)
 
-          # ★ここが重要
+          # ★ここが最重要
           keymap["layout"] = {
-            "custom": layout["layout"]["keys"]
+            "zmk_keyboard": "custom",
+            "layout": layout["layout"]["keys"]
           }
 
           with open("combined.json", "w") as f:

@@ -54,8 +54,8 @@ jobs:
             }
           }' config/roBa.json > layout.json
 
-      - name: Debug layout.yaml
-        run: cat layout.yaml
+      - name: Debug layout.json
+        run: cat layout.json
 
       - name: Merge (Python yq方式)
         run: |

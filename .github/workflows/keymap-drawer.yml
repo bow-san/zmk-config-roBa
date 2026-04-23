@@ -71,7 +71,7 @@ jobs:
 
           # ★ここが最重要
           keymap["layout"] = {
-            "zmk_keyboard": "custom",
+            "zmk_keyboard": "roBa",
             "layout": layout["layout"]["keys"]
           }
 

@@ -23,6 +23,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq yq
 
+      - name: Debug roBa.json
+        run: |
+          cat config/roBa.json | jq '.layouts.default_layout.layout[0]'
+
       - name: Convert keymap
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml

@@ -60,7 +60,7 @@ jobs:
 
       - name: Merge (Python)
         run: |
-          python3 <<EOF
+          python <<EOF
           import json
 
           with open("keymap_clean.json") as f:
@@ -69,18 +69,28 @@ jobs:
           with open("layout.json") as f:
             layout = json.load(f)
 
-          keymap["layout"] = layout["layout"]
+          # ★ここが重要
+          keymap["layout"] = {
+            "custom": layout["layout"]["keys"]
+          }
 
           with open("combined.json", "w") as f:
-            json.dump(keymap, f, indent=2)
+            json.dump(keymap, f)
           EOF
 
       - name: Debug combined.json
         run: cat combined.json
 
-      - name: Convert back to YAML
+      - name: Convert to YAML
         run: |
-          yq -y . combined.json > combined.yaml
+          pip install pyyaml
+          python <<EOF
+          import json, yaml
+          with open("combined.json") as f:
+            data = json.load(f)
+          with open("combined.yaml", "w") as f:
+            yaml.safe_dump(data, f)
+          EOF
 
       - name: Debug combined.yaml
         run: cat combined.yaml

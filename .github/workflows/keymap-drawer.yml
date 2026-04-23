@@ -59,7 +59,7 @@ jobs:
 
       - name: Merge (Python yq方式)
         run: |
-          jq -s '.[0] * {layout: .[1].layout}' keymap_clean.json layout.json > combined.json
+          jq -s '.[0] | .layout = .[1].layout' keymap_clean.json layout.json > combined.json
 
       - name: Debug layout.json
         run: cat combined.json

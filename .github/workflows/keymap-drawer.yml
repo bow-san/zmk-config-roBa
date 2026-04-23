@@ -30,14 +30,22 @@ jobs:
       - name: Convert keymap
         run: |
           keymap parse -z config/roBa.keymap > keymap.yaml
-          
-      - name: Convert keymap to JSON & remove zmk_keyboard
-        run: |
-          yq -o=json keymap.yaml | jq 'del(.. | .zmk_keyboard?) | del(.. | .keyboard?)' > keymap_clean.json
 
-      - name: Clean keymap
+
+      - name: Convert YAML to JSON
         run: |
-          yq keymap.yaml | jq 'del(.layout)' > keymap_clean.json
+          python3 <<EOF
+          import yaml, json
+
+          with open("keymap.yaml") as f:
+            data = yaml.safe_load(f)
+
+          # layout削除
+          data.pop("layout", None)
+
+          with open("keymap_clean.json", "w") as f:
+            json.dump(data, f)
+          EOF
 
       - name: Convert layout (robust)
         run: |
@@ -57,9 +65,6 @@ jobs:
               )
             }
           }' config/roBa.json > layout.json
-
-      - name: Debug layout.json
-        run: cat layout.json
 
       - name: Debug files
         run: |

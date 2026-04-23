@@ -73,9 +73,22 @@ jobs:
           echo "=== layout.json ==="
           cat layout.json || true
 
-      - name: Merge (Python yq方式)
+      - name: Merge (Python)
         run: |
-          jq -s '.[0] | .layout = .[1].layout' keymap_clean.json layout.json > combined.json
+          python3 <<EOF
+          import json
+
+          with open("keymap_clean.json") as f:
+            keymap = json.load(f)
+
+          with open("layout.json") as f:
+            layout = json.load(f)
+
+          keymap["layout"] = layout["layout"]
+
+          with open("combined.json", "w") as f:
+            json.dump(keymap, f, indent=2)
+          EOF
 
       - name: Debug layout.json
         run: cat combined.json
